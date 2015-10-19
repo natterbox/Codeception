@@ -93,8 +93,6 @@ class Yii2 extends Framework implements ActiveRecord, PartedModule, SupportsDoma
         if ($this->transaction && $this->config['cleanup']) {
             $this->transaction->rollback();
         }
-        
-        \yii\web\UploadedFile::reset();
 
         if (Yii::$app) {
             Yii::$app->session->destroy();

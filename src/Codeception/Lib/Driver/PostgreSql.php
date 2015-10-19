@@ -9,8 +9,6 @@ class PostgreSql extends Db
 
     protected $connection = null;
 
-    protected $searchPath = null;
-
     public function load($sql)
     {
         $query = '';
@@ -35,10 +33,6 @@ class PostgreSql extends Db
                 if (($pos !== false) && ($pos >= 0)) {
                     $dollarsOpen = !$dollarsOpen;
                 }
-            }
-
-            if (preg_match('/SET search_path = .*/i', $sqlLine, $match)) {
-                $this->searchPath = $match[0];
             }
 
             $query .= "\n" . rtrim($sqlLine);
@@ -103,11 +97,6 @@ class PostgreSql extends Db
             $constring .= ' user=' . $this->user;
             $constring .= ' password=' . $this->password;
             $this->connection = pg_connect($constring);
-
-            if ($this->searchPath !== null) {
-                pg_query($this->connection, $this->searchPath);
-            }
-
             pg_query($this->connection, $query);
             $this->putline = true;
         } else {

@@ -279,13 +279,9 @@ class Symfony2 extends Framework implements DoctrineProvider, SupportsDomainRout
         return $profiler->loadProfileFromResponse($response);
     }
 
-    /**
-     * @param $url
-     */
-    protected function debugResponse($url)
+    protected function debugResponse()
     {
-        parent::debugResponse($url);
-
+        $this->debugSection('Page', $this->client->getHistory()->current()->getUri());
         if ($profile = $this->getProfiler()) {
             if ($profile->hasCollector('security')) {
                 if ($profile->getCollector('security')->isAuthenticated()) {

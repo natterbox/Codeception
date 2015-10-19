@@ -4,7 +4,7 @@ namespace Codeception\Lib\Interfaces;
 interface Db
 {
     /**
-     * Asserts that a row with the given column values exists.
+     * Checks if a row with given column values exists.
      * Provide table name and column values.
      *
      * Example:
@@ -29,7 +29,7 @@ interface Db
     /**
      * Effect is opposite to ->seeInDatabase
      *
-     * Asserts that there is no record with the given column values in a database.
+     * Checks if there is no record with such column values in database.
      * Provide table name and column values.
      *
      * Example:
